@@ -1,4 +1,3 @@
-from flask import Flask, render_template, request
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -18,17 +17,14 @@ period6 = client.open("Library Passes").get_worksheet(5)
 period7 = client.open("Library Passes").get_worksheet(6)
 period8 = client.open("Library Passes").get_worksheet(7)
 
-app = Flask(__name__)
+periods = [period1, period2, period3, period4, period5, period6, period7, period8]
 
-
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-
-def yeet():
-    print("yeet")
-
-
-if __name__ == '__main__':
-    app.run()
+# Looping to create teacher names
+for i in range(7):
+    j = 3
+    name = options.cell(j, i+1).value
+    while name != '':
+        p = periods[i]
+        p.update_cell(1, j - 2, name)
+        j = j + 1
+        name = options.cell(j, i + 1).value
