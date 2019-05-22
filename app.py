@@ -18,14 +18,16 @@ period6 = client.open("Library Passes").get_worksheet(5)
 period7 = client.open("Library Passes").get_worksheet(6)
 period8 = client.open("Library Passes").get_worksheet(7)
 
+# variable setup
+maxStudents = int(options.cell(2, 9).value)
+
+
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def hello_world():
-    return 'Hello World!'
-
-
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
