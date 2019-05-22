@@ -9,6 +9,7 @@ client = gspread.authorize(credentials)
 
 # sheet setup
 options = client.open("Options").sheet1
+idsheet = client.open("id").sheet1
 period1 = client.open("Library Passes").get_worksheet(0)
 period2 = client.open("Library Passes").get_worksheet(1)
 period3 = client.open("Library Passes").get_worksheet(2)
@@ -20,7 +21,8 @@ period8 = client.open("Library Passes").get_worksheet(7)
 
 # variable setup
 maxStudents = int(options.cell(2, 9).value)
-
+name = ""
+pArr = [0, 0, 0, 0, 0, 0, 0, 0]
 
 app = Flask(__name__)
 
@@ -28,6 +30,21 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def hello_world():
     return render_template('index.html')
+
+
+@app.route("/select_period", methods=['POST', "GET"])
+def select_period():
+    global name
+    if request.method == 'POST':
+        data = request.form['input']
+        try:
+            sid = idsheet.find(data)
+        except:
+            return render_template("error.html")
+        name = idsheet.cell(sid.row, sid.col + 1).value
+        if name == '':
+            return render_template("error.html")
+    return render_template('select_period.html', name=name, pArr=pArr)
 
 
 if __name__ == '__main__':
