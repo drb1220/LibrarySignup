@@ -19,8 +19,10 @@ period8 = client.open("Library Passes").get_worksheet(7)
 
 periods = [period1, period2, period3, period4, period5, period6, period7, period8]
 
+print('Generating List of Teachers')
+
 # Looping to create teacher names
-for i in range(7):
+for i in range(8):
     j = 3
     name = options.cell(j, i+1).value
     while name != '':
@@ -28,3 +30,5 @@ for i in range(7):
         p.update_cell(1, j - 2, name)
         j = j + 1
         name = options.cell(j, i + 1).value
+print('Generation Complete')
+print('Starting Server')

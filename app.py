@@ -26,8 +26,6 @@ def hello_world():
     return 'Hello World!'
 
 
-def yeet():
-    print("yeet")
 
 
 if __name__ == '__main__':
