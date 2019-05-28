@@ -44,7 +44,7 @@ def select_period():
         name = idsheet.cell(sid.row, sid.col + 1).value
         if name == '':
             return render_template("error.html")
-    return render_template('select_period.html', name=name, pArr=pArr)
+    return render_template('select_period.html', name=name, pArr=pArr, maxStudents=maxStudents)
 
 
 if __name__ == '__main__':
