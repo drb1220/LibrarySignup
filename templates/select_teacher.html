@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Teacher</title>
+</head>
+<body>
+    <h1>Hello, {{ name }}</h1> // Move this to template
+    <form name="form2" method="POST" action="/submit">
+        <select name="teacher">
+            {% for item in teacherList %}
+            <option value="0">item['item']</option>
+            {%  endfor %}
+        </select>
+    </form>
+</body>
+</html>
+<script>
+
+</script>
