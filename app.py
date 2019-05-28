@@ -19,6 +19,8 @@ period6 = client.open("Library Passes").get_worksheet(5)
 period7 = client.open("Library Passes").get_worksheet(6)
 period8 = client.open("Library Passes").get_worksheet(7)
 
+periods = [period1, period2, period3, period4, period5, period6, period7, period8]
+
 # variable setup
 maxStudents = int(options.cell(2, 9).value)
 name = ""
@@ -45,6 +47,26 @@ def select_period():
         if name == '':
             return render_template("error.html")
     return render_template('select_period.html', name=name, pArr=pArr, maxStudents=maxStudents)
+
+
+def select_teacher():
+    global name
+    global pArr
+    global maxStudents
+    global periods
+
+    if request.method == 'POST':
+        pIndex = int(request.form['period'])
+        if pArr[p] > maxStudents:
+            return render_template('full.html')
+        teacherList = []
+        teacher = periods[pIndex].cell(1, 1).value
+        i = 1
+        while teacher != '':
+            teacherList.append(teacher)
+            i += 1
+            teacher = periods[pIndex].cell(1, i).value
+    return render_template('select_teacher.html', name=name, p=p, teacherList=teacherList)
 
 
 if __name__ == '__main__':
