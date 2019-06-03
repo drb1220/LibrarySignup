@@ -12,7 +12,7 @@
     <form name="form2" method="POST" action="/submit">
         <select name="teacher">
             {% for item in teacherList %}
-            <option value="0">item['item']</option>
+            <option value="0">{{ item }}</option>
             {%  endfor %}
         </select>
     </form>

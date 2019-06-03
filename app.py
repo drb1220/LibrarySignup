@@ -58,7 +58,7 @@ def select_teacher():
 
     if request.method == 'POST':
         pIndex = int(request.form['period'])
-        if pArr[periods] > maxStudents:
+        if pArr[pIndex] > maxStudents:
             return render_template('full.html')
         teacherList = []
         teacher = periods[pIndex].cell(1, 1).value
@@ -67,7 +67,7 @@ def select_teacher():
             teacherList.append(teacher)
             i += 1
             teacher = periods[pIndex].cell(1, i).value
-    return render_template('select_teacher.html', name=name, p=periods, teacherList=teacherList)
+    return render_template('select_teacher.html', name=name, period=periods[pIndex], teacherList=teacherList)
 
 
 if __name__ == '__main__':
