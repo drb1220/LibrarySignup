@@ -1,0 +1,3 @@
+# LibrarySignup
+A school project in progress...
+More info to come soon
