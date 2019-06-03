@@ -25,6 +25,7 @@ periods = [period1, period2, period3, period4, period5, period6, period7, period
 maxStudents = int(options.cell(2, 9).value)
 name = ""
 pArr = [0, 0, 0, 0, 0, 0, 0, 0]
+periodIndex = 0
 
 app = Flask(__name__)
 
@@ -55,6 +56,7 @@ def select_teacher():
     global pArr
     global maxStudents
     global periods
+    global periodIndex
 
     if request.method == 'POST':
         pIndex = int(request.form['period'])
@@ -67,7 +69,24 @@ def select_teacher():
             teacherList.append(teacher)
             i += 1
             teacher = periods[pIndex].cell(1, i).value
-    return render_template('select_teacher.html', name=name, period=periods[pIndex], teacherList=teacherList)
+        periodIndex = pIndex
+    return render_template('select_teacher.html', name=name, teacherList=teacherList)
+
+
+@app.route("/success", methods=['POST', "GET"])
+def success():
+    global periodIndex
+    global name
+    if request.method == 'POST':
+        teacher = request.form['teacher']
+        period = periods[periodIndex]
+        t = ""
+        try:
+            t = period.find(teacher)
+        except:
+            return render_template("error.html")
+        period.update_cell(t.row+1+pArr[periodIndex], t.col, name)
+        pArr[periodIndex] += 1
 
 
 if __name__ == '__main__':
