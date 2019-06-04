@@ -28,13 +28,19 @@ name = ""
 pArr = [0, 0, 0, 0, 0, 0, 0, 0]
 periodIndex = 0
 teacherList = []
+messagename = ""
+messagehidden = "none"
+iderror= "Invalid ID, Please try again."
+successmessage= "Selection Successful"
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['POST', 'GET'])
 def hello_world():
-    return render_template('index.html')
+    global messagename
+    global messagehidden
+    return render_template('index.html', messagehidden=messagehidden)
 
 
 @app.route("/select_period", methods=['POST', "GET"])
@@ -45,10 +51,10 @@ def select_period():
         try:
             sid = idsheet.find(data)
         except:
-            return render_template("error.html")
+            return render_template('index.html', messagename=iderror, messagehidden="")
         name = idsheet.cell(sid.row, sid.col + 1).value
         if name == '':
-            return render_template("error.html")
+            return render_template('index.html', messagename=iderror, messagehidden="")
     return render_template('select_period.html', name=name, pArr=pArr, maxStudents=maxStudents)
 
 
@@ -82,6 +88,9 @@ def success():
     global name
     global t
     global teacherList
+    global messagehidden
+    global messagename
+    global successmessage
     if request.method == 'POST':
         teacher = int(request.form['teacher'])
         period = periods[periodIndex]
@@ -93,7 +102,7 @@ def success():
         period.update_cell(t.row+1+pArr[periodIndex], t.col, name)
         pArr[periodIndex] += 1
         print(pArr[periodIndex])
-        return render_template("success.html")
+        return render_template('index.html', messagehidden="", messagename=successmessage)
 
 
 if __name__ == '__main__':

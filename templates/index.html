@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap" rel="stylesheet">
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <title>Login</title>
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
     <body>
         <form name='form1' autocomplete="off" method="POST" action="/select_period">
             <div class="form-group">
                 <h1>Please scan the barcode on your student ID</h1>
                 <input name="input" type="text" id="input1" style="opacity:0; font-family: 'Merriweather Sans', sans-serif;" autofocus>
+            </div>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert" style="display:{{ messagehidden }};">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <strong>Message:</strong> {{ messagename }}
             </div>
         </form>
 
