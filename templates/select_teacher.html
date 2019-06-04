@@ -9,13 +9,13 @@
 <body>
 
     <h1>Hello, {{ name }}</h1>
-    <form name="form2" method="POST" action="/success">
-        <select name="teacher">
+    <form name="form2" method="POST" action="/success" autocomplete="off">
+        <select name="teacher" class="form-control">
             {% for item in teacherList %}
             <option value="{{ teacherList.index(item) }}">{{ item }}</option>
             {%  endfor %}
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
     <!-- Bootstrap stuff -->
