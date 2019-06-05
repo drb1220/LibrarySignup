@@ -19,6 +19,13 @@ period6 = client.open("Library Passes").get_worksheet(5)
 period7 = client.open("Library Passes").get_worksheet(6)
 period8 = client.open("Library Passes").get_worksheet(7)
 
+pbool = []
+for i in range(8):
+    if options.cell(2, i+1).value == "Open":
+        pbool.append(True)
+    else:
+        pbool.append(False)
+
 periods = [period1, period2, period3, period4, period5, period6, period7, period8]
 t = ""
 
@@ -55,7 +62,7 @@ def select_period():
         name = idsheet.cell(sid.row, sid.col + 1).value
         if name == '':
             return render_template('index.html', messagename=iderror, messagehidden="")
-    return render_template('select_period.html', name=name, pArr=pArr, maxStudents=maxStudents)
+    return render_template('select_period.html', name=name, pArr=pArr, maxStudents=maxStudents, pbool=pbool)
 
 
 @app.route("/select_teacher", methods=['POST', "GET"])
@@ -70,8 +77,6 @@ def select_teacher():
     if request.method == 'POST':
         teacherList.clear()
         pIndex = int(request.form['period'])
-        if pArr[pIndex] > maxStudents:
-            return render_template('full.html')
         teacher = periods[pIndex].cell(1, 1).value
         i = 1
         while teacher != '':
@@ -122,6 +127,6 @@ def genteacherlist():
     print('Starting Server')
 
 
-genteacherlist()
+# genteacherlist()
 if __name__ == '__main__':
     app.run()
