@@ -127,6 +127,6 @@ def genteacherlist():
     print('Starting Server')
 
 
-# genteacherlist()
+genteacherlist()
 if __name__ == '__main__':
     app.run()

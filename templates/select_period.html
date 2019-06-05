@@ -7,23 +7,34 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+
+
+<body onload="myFunction()">
+
+    <script>
+        function myFunction(){
+            alert("dab");
+            for( let i = 0; i < 8; i++){
+                let x = document.getElementById("period").options[i].disabled = true;
+                alert("dab 2")
+            }
+        }
+    </script>
+
+
     <div style="padding: 0px 50px;">
         <h1>Hello, {{ name }}</h1>
         <form action="/select_teacher" autocomplete="off" method="POST" name="form1">
-            <select class="form-control" name="period">
-                <option value="0">Period 1 ({{ maxStudents - pArr[0]}} spot(s) left)</option>
-                <option value="1">Period 2 ({{ maxStudents - pArr[1]}} spot(s) left)</option>
-                <option value="2">Period 3 ({{ maxStudents - pArr[2]}} spot(s) left)</option>
-                <option value="3">Period 4 ({{ maxStudents - pArr[3]}} spot(s) left)</option>
-                <option value="4">Period 5 ({{ maxStudents - pArr[4]}} spot(s) left)</option>
-                <option value="5">Period 6 ({{ maxStudents - pArr[5]}} spot(s) left)</option>
-                <option value="6">Period 7 ({{ maxStudents - pArr[6]}} spot(s) left)</option>
-                <option value="7">Period 8 ({{ maxStudents - pArr[7]}} spot(s) left)</option>
+            <select name="period" class="form-control">
+                {% for i in range(8) %}
+                <option id="{{ i }}" value="{{ i }}">Period {{ i+1 }} ({{ maxStudents - pArr[i]}} spot(s) left)</option>
+                {%  endfor %}
             </select>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
+
 
     <!-- Bootstrap required components -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
