@@ -30,14 +30,14 @@ periodIndex = 0
 teacherList = []
 messagename = ""
 messagehidden = "none"
-iderror= "Invalid ID, Please try again."
-successmessage= "Selection Successful"
+iderror = "Invalid ID, Please try again."
+successmessage = "Selection Successful"
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['POST', 'GET'])
-def hello_world():
+def index():
     global messagename
     global messagehidden
     return render_template('index.html', messagehidden=messagehidden)
@@ -105,5 +105,23 @@ def success():
         return render_template('index.html', messagehidden="", messagename=successmessage)
 
 
+def genteacherlist():
+    for p in periods:
+        p.clear()
+    print('Generating List of Teachers')
+    # Looping to create teacher names
+    for i in range(8):
+        j = 3
+        n = options.cell(j, i + 1).value
+        while n != '':
+            p = periods[i]
+            p.update_cell(1, j - 2, n)
+            j = j + 1
+            n = options.cell(j, i + 1).value
+    print('Generation Complete')
+    print('Starting Server')
+
+
+genteacherlist()
 if __name__ == '__main__':
     app.run()
