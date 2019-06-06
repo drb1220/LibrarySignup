@@ -15,8 +15,8 @@
         function myFunction(){
             alert("dab");
             for( let i = 0; i < 8; i++){
-                let x = document.getElementById("period").options[i].disabled = true;
-                alert("dab 2")
+                
+                document.getElementById(i + "").setAttribute("disabled", "disabled");
             }
         }
     </script>
@@ -27,7 +27,7 @@
         <form action="/select_teacher" autocomplete="off" method="POST" name="form1">
             <select name="period" class="form-control">
                 {% for i in range(8) %}
-                <option id="{{ i }}" value="{{ i }}">Period {{ i+1 }} ({{ maxStudents - pArr[i]}} spot(s) left)</option>
+                <option class="" id="{{ i }}" value="{{ i }}">Period {{ i+1 }} ({{ maxStudents - pArr[i]}} spot(s) left</option>
                 {%  endfor %}
             </select>
             <button type="submit" class="btn btn-primary">Submit</button>
