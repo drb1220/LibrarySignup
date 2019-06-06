@@ -3,6 +3,7 @@
     <words>
       <w>messagehidden</w>
       <w>pbool</w>
+      <w>tojson</w>
     </words>
   </dictionary>
 </component>
