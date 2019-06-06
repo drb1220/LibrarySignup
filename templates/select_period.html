@@ -16,12 +16,23 @@
             let pbool = {{pbool|tojson|safe}};
             let pArr = {{pArr|tojson|safe}};
             let maxStudents = {{maxStudents|tojson|safe}};
-            alert(pbool);
             for(let i = 0; i < 8; i++) {
                 if(pbool[i] == false || pArr[i] >= maxStudents){
                     document.getElementById(i + "").setAttribute("disabled", "disabled");
                 }
             }
+            setSelected();
+        }
+        function setSelected() {
+
+            for(let i = 0; i < 8; i++){
+                if( document.getElementById(i + "").getAttribute("disabled") !== "disabled"){
+                    document.getElementById(i + "").setAttribute("selected", "selected");
+                    return;
+                }
+            }
+            //this occurs when all periods are closed:
+            alert("The Library is closed today.");
         }
     </script>
 
