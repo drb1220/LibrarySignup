@@ -23,8 +23,9 @@
                 }
                 if (counter === 0) {
                     clearInterval(counter);
+                    document.forms["home form"].submit();
                 }
-            }, 500);
+            }, 1000);
         })();
         }
     </script>
@@ -34,10 +35,9 @@
             <h1 class="display-3">Success!</h1>
             <p class="lead">Selection Successful. Returning to home in <span id="count">5</span></p>
             <hr class="my-2">
-            <p>More info</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-            </p>
+            <form method="POST" action="/" id="home form">
+                <button class="btn btn-primary btn-lg" role="button" type="submit" id="home button">Home</button>
+            </form>
         </div>
     </div>
 
